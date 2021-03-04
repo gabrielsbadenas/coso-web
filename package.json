@@ -1,15 +1,23 @@
 {
-  "name": "phaser3-tutorial-src",
+  "name": "coso-web",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "gabriel",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielsbadenas/coso-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gabrielsbadenas/coso-web/issues"
+  },
+  "homepage": "https://github.com/gabrielsbadenas/coso-web#readme",
+  "description": ""
 }
