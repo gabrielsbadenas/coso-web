@@ -5,7 +5,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: {y: 0},
+      gravity: { y: 0 },
       debug: false
     }
   },
@@ -18,19 +18,19 @@ const config = {
 }
 
 let player, ball, cursors, score = 0, gameOver = false,
-game = new Phaser.Game(config), scoreText
+  game = new Phaser.Game(config), scoreText
 
-function preload(){
-  this.load.image('ball','../images/ball.png')
-  this.load.image('bg','../images/bg.png')
-  this.load.image('player','../images/pk1.png')
+function preload() {
+  this.load.image('ball', '../images/ball.png')
+  this.load.image('bg', '../images/bg.png')
+  this.load.image('player', '../images/pk1.png')
   this.load.spritesheet('dude', '../images/pk.png',
-  {frameWidth: 16, frameHeight: 16})
+    { frameWidth: 16, frameHeight: 16 })
 }
 
-function create(){
-  this.add.image(160/2,144/2,'bg')
-  ball = this.physics.add.sprite(random(6,154),random(20,138),'ball')
+function create() {
+  this.add.image(160 / 2, 144 / 2, 'bg')
+  ball = this.physics.add.sprite(random(6, 154), random(20, 138), 'ball')
   this.velocity = 1
   player = this.physics.add.sprite(80, 72, 'player')
   player.setCollideWorldBounds(true)
@@ -39,31 +39,31 @@ function create(){
   //9left,10right-up,11right
   this.anims.create({
     key: 'left',
-    frames: this.anims.generateFrameNumbers('dude',{start:8,end:9}),
+    frames: this.anims.generateFrameNumbers('dude', { start: 8, end: 9 }),
     frameRate: 10,
     repeat: -1
   })
   this.anims.create({
     key: 'right',
-    frames: this.anims.generateFrameNumbers('dude',{start:10,end:11}),
+    frames: this.anims.generateFrameNumbers('dude', { start: 10, end: 11 }),
     frameRate: 10,
     repeat: -1
   })
   this.anims.create({
     key: 'up',
-    frames: this.anims.generateFrameNumbers('dude',{start:4,end:7}),
+    frames: this.anims.generateFrameNumbers('dude', { start: 4, end: 7 }),
     frameRate: 10,
     repeat: -1
   })
   this.anims.create({
     key: 'down',
-    frames: this.anims.generateFrameNumbers('dude',{start:1,end:3}),
+    frames: this.anims.generateFrameNumbers('dude', { start: 1, end: 3 }),
     frameRate: 10,
     repeat: -1
   })
   this.anims.create({
     key: 'stop',
-    frames: this.anims.generateFrameNumbers('dude',{start:0,end:0}),
+    frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 0 }),
     frameRate: 10,
     repeat: -1
   })
@@ -73,32 +73,32 @@ function create(){
   cursors = this.input.keyboard.createCursorKeys()
 }
 
-function collectBall(player, ball){
+function collectBall(player, ball) {
   //rango: x6,y20 a x154,y138
-  ball.y = random(20,138)
-  ball.x = random(6,154)
+  ball.y = random(20, 138)
+  ball.x = random(6, 154)
   score++
   scoreText.setText('Score: ' + score)
 }
 
-function update(){
-  if(gameOver){
+function update() {
+  if (gameOver) {
     return;
   }
-  if (cursors.left.isDown){
-    player.x-=this.velocity
-    player.anims.play('left',true)
-  }else if (cursors.right.isDown){
-    player.x+=this.velocity
-    player.anims.play('right',true)
-  }else if (cursors.up.isDown){
-    player.y-=this.velocity
-    player.anims.play('up',true)
-  }else if (cursors.down.isDown){
-    player.y+=this.velocity
-    player.anims.play('down',true)
-  }else{
-    player.anims.play('stop',true)
+  if (cursors.left.isDown) {
+    player.x -= this.velocity
+    player.anims.play('left', true)
+  } else if (cursors.right.isDown) {
+    player.x += this.velocity
+    player.anims.play('right', true)
+  } else if (cursors.up.isDown) {
+    player.y -= this.velocity
+    player.anims.play('up', true)
+  } else if (cursors.down.isDown) {
+    player.y += this.velocity
+    player.anims.play('down', true)
+  } else {
+    player.anims.play('stop', true)
   }
 }
 function random(min, max) { // min and max included
