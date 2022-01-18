@@ -28,6 +28,8 @@ function preload() {
     { frameWidth: 16, frameHeight: 16 })
 }
 
+let time
+
 function create() {
   this.add.image(160 / 2, 144 / 2, 'bg')
   ball = this.physics.add.sprite(random(6, 154), random(20, 138), 'ball')
@@ -71,6 +73,8 @@ function create() {
   scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '12px', fill: '#000' });
   this.physics.add.overlap(player, ball, collectBall, null, this)
   cursors = this.input.keyboard.createCursorKeys()
+
+  time = Date.now()
 }
 
 function collectBall(player, ball) {
@@ -78,6 +82,12 @@ function collectBall(player, ball) {
   ball.y = random(20, 138)
   ball.x = random(6, 154)
   score++
+  if(score===10){
+    gameOver=true
+      let f=Date.now()-time
+    this.add.text(0,64,f/1000+' seconds',{fill: '#000'})
+    console.log(f/1000)
+  }
   scoreText.setText('Score: ' + score)
 }
 
